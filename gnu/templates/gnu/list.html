@@ -1,0 +1,24 @@
+{% if latest_articles %}
+    <table border="1">
+        <tr>
+            <td>제목</td>
+            <td>생성일시</td>
+            <td>수정일시</td>
+            <td>수정</td>
+            <td>삭제</td>
+        </tr>
+    {% for article in latest_articles %}
+        <tr>
+            <td><a href="{% url 'gnu:read' article.id %}">{{ article.title }}</a></td>
+            <td>{{ article.created_at }}</td>
+            <td>{{ article.updated_at }}</td>
+            <td><a href="{% url 'gnu:edit' article.id %}">수정</a></td>
+            <td><a href="{% url 'gnu:delete' article.id %}">삭제</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No data.</p>
+{% endif %}
+
+<p><a href="{% url 'gnu:form' %}">추가</a></p>
